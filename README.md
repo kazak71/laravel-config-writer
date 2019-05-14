@@ -1,5 +1,10 @@
 # Laravel Config Writer
 
+#### Notice ⚠
+> This package was forked [daftspunk/laravel-config-writer](https://github.com/daftspunk/laravel-config-writer) and the errors that were made in the original package were fixed.
+
+---
+
 Write to Laravel Config files and maintain file integrity.
 
 This library is an extension of the Config component used by Laravel. It adds the ability to write to configuration files.

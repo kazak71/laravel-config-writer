@@ -47,7 +47,7 @@ return array(
     |
     */
 
-    'timezone' => 'October\'s time',
+    'timezone' => "October's time",
 
     'timezoneAgain' => 'Something "else"',
 

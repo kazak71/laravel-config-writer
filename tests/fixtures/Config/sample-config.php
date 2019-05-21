@@ -91,7 +91,8 @@ return array(
             'host'     => 'localhost',
             'database' => 'database',
             'username' => 'root',
-            'password' => false,
+            'password' => '',
+            'prefix_indexes' => false,
             'charset'  => 'utf8',
             'prefix'   => '',
             'schema'   => 'public',
@@ -124,4 +125,21 @@ return array(
         'port'   => 11211,
         'weight' => true,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Locales
+    |--------------------------------------------------------------------------
+    |
+    | Contains an array with the applications available locales.
+    |
+    */
+    'locales' => [
+        'en',
+        'fr',
+        'es' => [
+            'MX', // mexican spanish
+            'CO', // colombian spanish
+        ],
+    ]
 );

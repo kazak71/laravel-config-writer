@@ -34,7 +34,7 @@ class RewriteTest extends TestCase
          */
         $contents = file_get_contents(__DIR__ . '/../fixtures/Config/sample-config.php');
         $contents = $writer->toContent($contents, ['url' => 'http://octobercms.com']);
-        $result = eval('?>'.$contents);
+        $result = eval('?>' . $contents);
 
         $this->assertTrue(is_array($result));
         $this->assertArrayHasKey('url', $result);
@@ -44,7 +44,7 @@ class RewriteTest extends TestCase
          * Rewrite a second level string
          */
         $contents = $writer->toContent($contents, ['memcached.host' => '69.69.69.69']);
-        $result = eval('?>'.$contents);
+        $result = eval('?>' . $contents);
 
         $this->assertArrayHasKey('memcached', $result);
         $this->assertArrayHasKey('host', $result['memcached']);
@@ -54,7 +54,7 @@ class RewriteTest extends TestCase
          * Rewrite a third level string
          */
         $contents = $writer->toContent($contents, ['connections.mysql.host' => '127.0.0.1']);
-        $result = eval('?>'.$contents);
+        $result = eval('?>' . $contents);
 
         $this->assertArrayHasKey('connections', $result);
         $this->assertArrayHasKey('mysql', $result['connections']);
@@ -66,7 +66,7 @@ class RewriteTest extends TestCase
          */
         $contents = $writer->toContent($contents, ['timezone' => 'The Fifth Dimension']);
         $contents = $writer->toContent($contents, ['timezoneAgain' => 'The "Sixth" Dimension']);
-        $result = eval('?>'.$contents);
+        $result = eval('?>' . $contents);
 
         $this->assertArrayHasKey('timezone', $result);
         $this->assertArrayHasKey('timezoneAgain', $result);
@@ -81,8 +81,8 @@ class RewriteTest extends TestCase
         $contents = $writer->toContent($contents, ['bullyIan' => true]);
         $contents = $writer->toContent($contents, ['booLeeIan' => false]);
         $contents = $writer->toContent($contents, ['memcached.weight' => false]);
-        $contents = $writer->toContent($contents, ['connections.pgsql.password' => true]);
-        $result = eval('?>'.$contents);
+        $contents = $writer->toContent($contents, ['connections.pgsql.prefix_indexes' => true]);
+        $result = eval('?>' . $contents);
 
         $this->assertArrayHasKey('debug', $result);
         $this->assertArrayHasKey('debugAgain', $result);
@@ -99,17 +99,27 @@ class RewriteTest extends TestCase
 
         $this->assertArrayHasKey('connections', $result);
         $this->assertArrayHasKey('pgsql', $result['connections']);
-        $this->assertArrayHasKey('password', $result['connections']['pgsql']);
-        $this->assertTrue($result['connections']['pgsql']['password']);
+        $this->assertArrayHasKey('prefix_indexes', $result['connections']['pgsql']);
+        $this->assertTrue($result['connections']['pgsql']['prefix_indexes']);
 
         /*
          * Rewrite an integer
          */
         $contents = $writer->toContent($contents, ['aNumber' => 69]);
-        $result = eval('?>'.$contents);
+        $result = eval('?>' . $contents);
 
         $this->assertArrayHasKey('aNumber', $result);
         $this->assertEquals(69, $result['aNumber']);
+
+        /*
+         * Rewrite an array
+         */
+        $contents = $writer->toContent($contents, ['locales' => ['en', 'ru']]);
+        $result = eval('?>' . $contents);
+
+        $this->assertArrayHasKey('locales', $result);
+        $this->assertIsArray($result['locales']);
+        $this->assertEquals(['en', 'ru'], $result['locales']);
     }
 
 }

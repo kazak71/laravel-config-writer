@@ -28,6 +28,13 @@ use Exception;
 class Rewrite
 {
 
+    /**
+     * @param string $filePath
+     * @param array $newValues
+     * @param bool $useValidation
+     * @return string
+     * @throws Exception
+     */
     public function toFile(string $filePath, array $newValues, bool $useValidation = true): string
     {
         $contents = file_get_contents($filePath);
@@ -37,6 +44,13 @@ class Rewrite
         return $contents;
     }
 
+    /**
+     * @param string $contents
+     * @param array $newValues
+     * @param bool $useValidation
+     * @return string
+     * @throws Exception
+     */
     public function toContent(string $contents, array $newValues, bool $useValidation = true): string
     {
         $contents = $this->parseContent($contents, $newValues);
@@ -93,7 +107,7 @@ class Rewrite
         $patterns[] = $this->buildConstantExpression($key, $items);
         $patterns[] = $this->buildArrayExpression($key, $items);
 
-        foreach ($patterns as $pattern) {
+        foreach ($patterns as $index => $pattern) {
             $result = preg_replace($pattern, '${1}${2}' . $replaceValue, $result, 1, $count);
 
             if ($count > 0) {
@@ -130,7 +144,7 @@ class Rewrite
         return $replaceValue;
     }
 
-    protected function writeArrayToPhp(array $array): array
+    protected function writeArrayToPhp(array $array): string
     {
         $result = [];
 
@@ -140,7 +154,7 @@ class Rewrite
             }
         }
 
-        return '['.implode(', ', $result).']';
+        $result = '['.implode(', ', $result).']';
 
         return $result;
     }
@@ -166,6 +180,9 @@ class Rewrite
 
     /**
      * Common constants only (true, false, null, integers)
+     * @param string $targetKey
+     * @param array $arrayItems
+     * @return string
      */
     protected function buildConstantExpression(string $targetKey, array $arrayItems = []): string
     {
@@ -185,6 +202,9 @@ class Rewrite
 
     /**
      * Single level arrays only
+     * @param string $targetKey
+     * @param array $arrayItems
+     * @return string
      */
     protected function buildArrayExpression(string $targetKey, array $arrayItems = []): string
     {
@@ -197,9 +217,11 @@ class Rewrite
         $expression[] = '([\'|"]'.$targetKey.'[\'|"]\s*=>\s*)';
 
         // The target value to be replaced ($3)
-        $expression[] = '(?:[aA][rR]{2}[aA][yY]\(|[\[])([^\]|)]*)[\]|)]';
+        //$expression[] = '(?:[aA][rR]{2}[aA][yY]\(|[\[])([^\]|)]*)[\]|)]';
 
-        return '/' . implode('', $expression) . '/';
+        $expression[] = '.+([^\n]*\n+)+.+\]';
+
+        return '/' . implode('', $expression) . '/m';
     }
 
     protected function buildArrayOpeningExpression(array $arrayItems): string

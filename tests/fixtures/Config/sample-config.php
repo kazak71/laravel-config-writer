@@ -70,41 +70,41 @@ return array(
     'connections' => [
 
         'sqlite' => [
-            'driver'   => 'sqlite',
-            'database' => __DIR__.'/../database/production.sqlite',
-            'prefix'   => '',
+            'driver' => 'sqlite',
+            'database' => __DIR__ . '/../database/production.sqlite',
+            'prefix' => '',
         ],
 
         'mysql' => [
-            'driver'    => ['rabble' => 'mysql'],
-            'host'      => 'localhost',
-            'database'  => 'database',
-            'username'  => 'root',
-            'password'  => '',
-            'charset'   => 'utf8',
+            'driver' => ['rabble' => 'mysql'],
+            'host' => 'localhost',
+            'database' => 'database',
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
+            'prefix' => '',
         ],
 
         'pgsql' => [
-            'driver'   => 'pgsql',
-            'host'     => 'localhost',
+            'driver' => 'pgsql',
+            'host' => 'localhost',
             'database' => 'database',
             'username' => 'root',
             'password' => '',
             'prefix_indexes' => false,
-            'charset'  => 'utf8',
-            'prefix'   => '',
-            'schema'   => 'public',
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
         ],
 
         'sqlsrv' => [
-            'driver'   => 'sqlsrv',
-            'host'     => 'localhost',
+            'driver' => 'sqlsrv',
+            'host' => 'localhost',
             'database' => 'database',
             'username' => 'root',
             'password' => '',
-            'prefix'   => '',
+            'prefix' => '',
         ],
 
     ],
@@ -121,8 +121,8 @@ return array(
     */
 
     'memcached' => [
-        'host'   => '127.0.0.1',
-        'port'   => 11211,
+        'host' => '127.0.0.1',
+        'port' => 11211,
         'weight' => true,
     ],
 
@@ -141,5 +141,16 @@ return array(
             'MX', // mexican spanish
             'CO', // colombian spanish
         ],
+    ],
+
+    'schemas' => [
+        'settings' => [
+            'title',
+            'text'
+        ],
+        'countries' => [
+            'name',
+            'code'
+        ]
     ]
 );

@@ -144,11 +144,13 @@ return array(
     ],
 
     'schemas' => [
+        'countries',
         'settings' => [
             'title',
             'text'
         ],
-        'countries' => [
+        'posts' => [],
+        'cities' => [
             'name',
             'code'
         ]

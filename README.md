@@ -24,7 +24,7 @@ Install through composer:
 composer require "altynbek07/laravel-config-writer"
 ```
 
->##### Using Laravel 5.4?
+>#### Using Laravel 5.4?
 >If you are installing with Laravel 5.4 you will need to add this to `app/config/app.php` under the 'providers' key.  
 >Otherwise, if you are on 5.5 this happens automatically thanks to package auto-discovery.
 >

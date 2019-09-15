@@ -1,10 +1,9 @@
 {
-    "name": "altynbek07/laravel-config-writer",
+    "name": "shah-newaz/laravel-config-writer",
     "description": "Laravel provider to be able to rewrite configuration",
-    "homepage": "http://octobercms.com",
+    "homepage": "http://www.intelle-hub.com",
     "keywords": [
-        "october cms",
-        "october",
+        "redprint",
         "laravel",
         "config",
         "write",
@@ -28,7 +27,6 @@
             "name": "Shahnewaz Rifat",
             "email": "rifat_rifats@live.com"
         }
-
     ],
     "require": {
         "php": "^7.2"

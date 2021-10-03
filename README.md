@@ -21,7 +21,7 @@ This provider is designed to be used in Laravel from `5.4` version.
 
 Install through composer:
 ```
-composer require "altynbek07/laravel-config-writer"
+composer require "kazak71/laravel-config-writer"
 ```
 
 >#### Using Laravel 5.4?
